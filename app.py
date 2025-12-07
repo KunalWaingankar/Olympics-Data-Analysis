@@ -6,7 +6,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.figure_factory as ff
 
-df = pd.read_csv('athlete_events.csv')
+ATHLETE_CSV_URL = "https://huggingface.co/datasets/kunalwaingankar/olympic-project-files/resolve/main/athlete_events.csv"
+df = pd.read_csv(ATHLETE_CSV_URL)
 region_df = pd.read_csv('noc_regions.csv')
 
 df = preprocessor.preprocess(df, region_df)
@@ -169,4 +170,5 @@ if user_menu == 'Athlete wise Analysis':
     st.title("Men Vs Women Participation Over the Years")
     final = helper.men_vs_women(df)
     fig = px.line(final, x="Year", y=["Male", "Female"])
+
     st.plotly_chart(fig)
